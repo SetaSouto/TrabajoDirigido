@@ -1,8 +1,0 @@
-# Carpetas que no se deben subir:
-
-nips14-ssl/data/
-nips14-ssl/models/
-nips14-sll/__pycache__/
-nips14-sll/anglepy/data/
-nips14-sll/anglepy/__pycache__/
-
