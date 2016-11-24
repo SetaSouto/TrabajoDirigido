@@ -25,7 +25,7 @@ Bueno de esa forma se crean las media y las varianzas (parámetros para generar 
 
 Luego inicializa los modelos para el aprendizaje con los z y con los $y$ (model) y el modelo de reconocimiento (model_qy).  
 
-### TODO
+### Done
 
 Analizar como separa los datos en etiquetados y no etiquetados. Sería mejor crear un método en la clase para importar los datos que genere esta separación sencilla, que permita devolver los sets como se necesitan (etiquetados y no etiquetados por separado).  
 
@@ -41,3 +41,7 @@ Ahora mi duda es que el validset error y el testset error son iguales para todos
 Qué pasó? El modelo me predice solo 39. Esto es porque dentro de los ejemplos que le estoy mostrando son casi todos 32.  
 
 Haré un estudio más estadísticos de los datos que le estoy pasando.  
+
+#### TODO
+
+Hacer un análsisis estadístico de los ejemplos que sí tienen etiqueta puesa el modelo me arroja que todos son 39, y eso es pq la gran mayoría son 39.  
