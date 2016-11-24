@@ -33,3 +33,11 @@ Analicé los datos y se siguen entregando por columna y la cantidad de filas son
 Ahora la clase se debe entregar como *one hot encoding*. Debe quedar de la forma (n_clases, x_examples).  
 
 Estoy raja, dejé a medias la creación del método para retornar datos de entranmientos searados entre etiquetados y no etiquetados en HyperspectralData.
+
+Esto está ready. El script está funcionando, es demasiado lento si. Lo estoy probando con 100 labeled y 100 unlabeled y loglikelihood baja al menos.
+
+Ahora mi duda es que el validset error y el testset error son iguales para todos los pasos la wea no cambia. Voy a ver qué me está tirando el modelo.  
+
+Qué pasó? El modelo me predice solo 39. Esto es porque dentro de los ejemplos que le estoy mostrando son casi todos 32.  
+
+Haré un estudio más estadísticos de los datos que le estoy pasando.  
