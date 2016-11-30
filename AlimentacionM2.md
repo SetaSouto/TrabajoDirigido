@@ -45,3 +45,7 @@ Haré un estudio más estadísticos de los datos que le estoy pasando.
 #### TODO
 
 Hacer un análsisis estadístico de los ejemplos que sí tienen etiqueta puesa el modelo me arroja que todos son 39, y eso es pq la gran mayoría son 39.  
+
+Vamos a hacer un cambio que puede introducir bugs: Vamos a cambiar el archivo de cual se extrae información. Ahora se va a indicar la cantidad de archivos a leer y devuelve todos los datos de esos archivos, luego si se indica la cantidad de elementos a sacar se sacan aleatoriamente de todos los archivos.  
+
+El archivo que ocupábamos antes era **"ALH1599-17-labeled.hdf5"**.
