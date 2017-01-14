@@ -1,0 +1,593 @@
+% CREACIÓN DEL DOCUMENTO, FUENTE E IDIOMA
+\documentclass[letterpaper,11pt]{article} % Documento clase artículo, tamaño letra 11pt
+\usepackage[utf8]{inputenc}               % Codificación UTF-8
+\usepackage[T1]{fontenc}                  % Soporta caracteres acentuados
+\usepackage{lmodern}                      % Tipografía moderna
+\usepackage[spanish]{babel}               % Define el idioma del documento en español
+
+% INFORMACIÓN DEL DOCUMENTO
+\newcommand{\nombredelinforme}{Semi-supervised learning with Deep Generative Models}
+\newcommand{\temaatratar}{Prueba con imágenes hiperespectrales}
+\newcommand{\fecharealizacion}{\today}
+\newcommand{\fechaentrega}{\today}
+
+\newcommand{\nombredelcurso}{}
+\newcommand{\codigodelcurso}{}
+
+\newcommand{\nombreuniversidad}{Universidad de Chile}
+\newcommand{\nombrefacultad}{Facultad de Ciencias Físicas y Matemáticas}
+\newcommand{\departamentouniversidad}{Departamento de Ciencias de la Computación}
+\newcommand{\imagendeldepartamento}{images/dcc.pdf}
+\newcommand{\imagendeldepartamentoescl}{0.2}
+\newcommand{\localizacionuniversidad}{Santiago, Chile}
+
+% INTEGRANTES, PROFESORES Y FECHAS
+\newcommand{\tablaintegrantes}{
+\begin{minipage}{0.965\textwidth}
+	\begin{flushright}
+		\begin{tabular}{ll}
+		Autor: 
+			& \begin{tabular}[t]{@{}l@{}}
+				Fabián Souto H.
+			\end{tabular} \\
+		Profesor guía: 
+			& \begin{tabular}[t]{@{}l@{}}
+				Pablo Guerrero
+			\end{tabular} \\
+		\multicolumn{2}{l}{\localizacionuniversidad}
+		\end{tabular}
+	\end{flushright}
+\end{minipage}}
+
+%BEGIN_FOLD
+% CONFIGURACIONES
+\newcommand{\defaultfontsize}{11pt}               % Tamaño de la fuente
+\newcommand{\defaultnewlinesize}{11pt}            % Tamaño del salto de línea
+\newcommand{\defaultinterlind}{1.2}               % Interlineado por defecto
+\newcommand{\defaultimagefolder}{images/}         % Directorio de las imágenes 
+\newcommand{\tipofuentetitulo}{\huge}             % Tamaño de los títulos
+\newcommand{\tipofuentesubtitulo}{\Large}         % Tamaño de los subtítulos
+\newcommand{\tipofuentetituloi}{\huge}            % Tamaño de los títulos en el índice
+\newcommand{\tipofuentesubtituloi}{\large}        % Tamaño de los subtítulos en el índice
+\newcommand{\tiporeferencias}{apa}                % Tipo de referencias
+\newcommand{\nomblttablas}{Lista de Tablas}       % Nombre de la lista de tablas
+\newcommand{\nombltfiguras}{Lista de Figuras}     % Nombre de la lista de figuras
+\newcommand{\nombltcontend}{Índice de Contenidos} % Nombre del índice de contenidos
+\newcommand{\nombltwtablas}{Tabla}                % Nombre de las tablas
+\newcommand{\nombltwfigura}{Figura}               % Nombre de las figuras
+\newcommand{\defaultcaptionmargin}{2.9}           % Márgenes de las leyendas por defecto
+\newcommand{\defaultpagemarginleft}{2.5}          % Margen izquierdo de las páginas [cm]
+\newcommand{\defaultpagemarginright}{2.5}         % Margen derecho de las páginas [cm]
+\newcommand{\defaultpagemargintop}{2.15}          % Margen superior de las páginas [cm]
+\newcommand{\defaultpagemarginbottom}{2.15}       % Margen inferior de las páginas [cm]
+\newcommand{\defaultfirstpagemargintop}{3.2}      % Margen superior de la portada [cm]
+\newcommand{\defaultmarginfloatimages}{-13pt}     % Margen sup. de figuras flotantes [pt]
+\newcommand{\defaultmargintopimages}{-0.2cm}      % Margen sup. de las figuras [cm]
+\newcommand{\defaultmarginbottomimages}{-0.2cm}   % Margen inf. de las figuras [cm]
+
+% LIBRERÍAS INDEPENDIENTES
+\usepackage[ampersand]{easylist}       % Listas
+\usepackage{amsmath}                   % Fórmulas matemáticas
+\usepackage{amssymb}                   % Símbolos matemáticos
+%\usepackage{amsthm}                   % Teoremas matemáticos
+\usepackage{caption}                   % Leyendas
+\usepackage{color}                     % Colores
+\usepackage{datetime}                  % Fechas
+\usepackage{enumitem}                  % Enumeraciones
+\usepackage{fancyhdr}                  % Encabezados y pié de páginas
+\usepackage{float}                     % Administrador de posiciones de objetos
+\usepackage{geometry}                  % Dimensiones y geometría del documento
+\usepackage{graphicx}                  % Propiedades extra para los gráficos
+\usepackage[makeroom]{cancel}          % Cancelar términos en fórmulas
+\usepackage[norule]{footmisc}          % Elimina la barra vertical de las notas
+\usepackage{multicol}                  % Múltiples columnas
+\usepackage{lipsum}                    % Permite crear textos dummy
+\usepackage{longtable}                 % Permite utilizar tablas en varias hojas
+\usepackage{listings}                  % Permite añadir código fuente
+\usepackage{setspace}                  % Cambia el espacio entre líneas
+\usepackage{subfig}                    % Permite agrupar imágenes
+\usepackage{tikz}                      % Permite dibujar
+\usepackage{titlesec}                  % Cambia el estilo de los títulos
+\usepackage{url}                       % Permite añadir enlaces
+%\usepackage[version=4]{mhchem}        % Fórmulas químicas
+\usepackage{wrapfig}                   % Permite comprimir imágenes
+
+% LIBRERÍAS DEPENDIENTES
+\usepackage{chngcntr}                  % Agrega números de secciones a las leyendas
+\usepackage{epstopdf}                  % Convierte archivos .eps a pdf
+\usepackage[hidelinks]{hyperref}       % Permite añadir enlaces y referencias
+\usepackage{multirow}                  % Agrega nuevas opciones a las tablas
+
+% CARGA DE MÓDULOS PARA LIBRERÍAS
+\usetikzlibrary{babel}                 % Asociado a tikz
+
+% DECLARACIÓN DE FUNCIONES
+\newcommand{\quotes}[1]{``#1''}        % Insertar cita
+\newcommand{\quotesit}[1]{\textit{\quotes{#1}}} % Insertar cita en itálico
+\newcommand{\setcaptionmargincm}[1]{\captionsetup{margin=#1cm}} % Cambiar el margen
+\newcommand{\setpagemargincm}[4]{      % Cambia márgenes de las páginas [cm]
+	\newgeometry{left=#1cm, top=#2cm, right=#3cm, bottom=#4cm}}
+\newcommand{\newp}{                    % Inserta nueva línea
+	\hbadness=10000 \vspace{\defaultnewlinesize} \par}
+\newcommand{\newpar}[1]{               % Nuevo párrafo
+	\hbadness=10000 #1 \newp}
+\newcommand{\newparnl}[1]{#1 \par}     % Nuevo párrafo sin nueva linea al final
+\newcommand{\lpow}[2]{{#1}_{#2}}       % Insertar sub-índice
+\newcommand{\pow}[2]{{#1}^{#2}}        % Insertar elevado
+\newcommand{\fracpartial}[2]{          % Fracción de derivadas parciales af/ax
+	\frac{\partial #1}{\partial #2}}
+\newcommand{\fracdpartial}[2]{         % Fracción de derivadas parciales dobles a^2/ax^2
+	\frac{{\partial}^{2} #1}{\partial {#2}^{2}}}
+\newcommand{\fracnpartial}[3]{         % Fracción de derivadas parciales en n a^n/ax^n
+	\frac{{\partial}^{#3} #1}{\partial {#2}^{#3}}}
+\newcommand{\fracderivat}[2]{          % Fracción de derivadas df/dx
+	\frac{d #1}{d #2}}
+\newcommand{\fracdderivat}[2]{         % Fracción de derivadas dobles d^2/dx^2
+	\frac{{d}^{2} #1}{d {#2}^{2}}}
+\newcommand{\fracnderivat}[3]{         % Fracción de derivadas en n d^n/dx^n
+	\frac{{d}^{#3} #1}{d {#2}^{#3}}}
+\newcommand{\newtitleanum}[1]{         % Insertar un título sin número
+	\addcontentsline{toc}{section}{#1} \section*{#1}}
+\newcommand{\newsubtitleanum}[1]{      % Insertar un subtítulo sin número
+	\addcontentsline{toc}{subsection}{#1} \subsection*{#1}}
+\newcommand{\newtitleanumnoi}[1]{      % Insertar un título sin num. fuera del índice
+	\section*{#1}}
+\newcommand{\newsubtitleanumnoi}[1]{   % Insertar un subtítulo sin num. fuera del índice
+	\subsection*{#1}}
+\newcommand{\insertequation}[2][]{     % Insertar una ecuación
+	\vspace{-0.2cm}
+	\begin{equation}
+		\text{#1} #2
+	\end{equation}}
+\newcommand{\insertequationcaptioned}[3][]{ % Insertar una ecuación con leyenda
+	\vspace{-0.1cm}
+	\begin{equation}
+		\text{#1} #2
+	\end{equation}
+	\begin{center}
+		\vspace{-0.15cm}
+		\textit{#3} \par
+	\end{center}}
+\newcommand{\insertimage}[4][]{        % Insertar una imagen
+	\vspace{\defaultmargintopimages}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[#3]{\defaultimagefolder#2}
+		\caption{#4 #1}
+	\end{figure}
+	\vspace{\defaultmarginbottomimages}}
+\newcommand{\insertimageboxed}[4][]{   % Insertar una imagen con recuadro
+	\vspace{\defaultmargintopimages}
+	\begin{figure}[H]
+		\centering
+		\fbox{\includegraphics[#3]{\defaultimagefolder#2}}
+		\caption{#4 #1}
+	\end{figure}
+	\vspace{\defaultmarginbottomimages}}
+\newcommand{\insertdoubleimage}[8][]{  % Insertar una imagen doble
+	\captionsetup{margin=0.5cm}
+	\vspace{\defaultmargintopimages}
+	\begin{figure}[H] \centering
+		\subfloat[#4]{
+			\includegraphics[#3]{\defaultimagefolder#2}}
+		\hspace{0.1cm}
+		\subfloat[#7]{
+			\includegraphics[#6]{\defaultimagefolder#5}}
+		\caption{#8 #1}
+	\end{figure}
+	\vspace{\defaultmarginbottomimages}
+	\setcaptionmargincm{\defaultcaptionmargin}}
+\newcommand{\insertimageleft}[5][]{    % Insertar una imagen a la izquierda
+	\begin{wrapfigure}[#5]{l}{#3\textwidth}
+		\setcaptionmargincm{0}
+		\vspace{\defaultmarginfloatimages}
+		\centering\includegraphics[width=\linewidth]{\defaultimagefolder#2}
+		\caption{#4 #1}
+		\setcaptionmargincm{\defaultcaptionmargin}
+	\end{wrapfigure}}
+\newcommand{\insertimageright}[5][]{   % Insertar una imagen a la derecha
+	\begin{wrapfigure}[#5]{r}{#3\textwidth}
+		\setcaptionmargincm{0}
+		\vspace{\defaultmarginfloatimages}
+		\centering\includegraphics[width=\linewidth]{\defaultimagefolder#2}
+		\caption{#4 #1}
+		\setcaptionmargincm{\defaultcaptionmargin}
+	\end{wrapfigure}}
+
+% DECLARACIÓN DE AMBIENTES Y ESTILOS
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+\lstdefinestyle{C}{ % Estilo de lenguaje C
+	language=C,
+  	numbers=left,
+  	stepnumber=1,        
+  	numbersep=5pt,
+  	backgroundcolor=\color{white}, 
+  	showspaces=false,
+  	showstringspaces=false,
+  	showtabs=false,
+  	tabsize=2,
+  	captionpos=b,
+  	breaklines=true,
+  	breakatwhitespace=true,
+  	title=\lstname}
+\lstdefinestyle{Java}{ % Estilo de lenguaje Java
+	language=Java,
+	frame=tb,
+	aboveskip=3mm,
+	belowskip=3mm,
+	showstringspaces=false,
+	columns=flexible,
+	basicstyle={\small\ttfamily},
+	numbers=none,
+	numberstyle=\tiny\color{gray},
+	keywordstyle=\color{blue},
+	commentstyle=\color{dkgreen},
+	stringstyle=\color{mauve},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=3}
+\lstdefinestyle{Matlab}{ % Estilo de lenguaje Matlab
+	language=Matlab,
+	breaklines=true,
+	morekeywords={matlab2tikz},
+	keywordstyle=\color{blue},
+	morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
+	identifierstyle=\color{black},
+	stringstyle=\color{mylilas},
+	commentstyle=\color{mygreen},
+	showstringspaces=false,
+	numbers=left,
+	numberstyle={\tiny \color{black}},
+	numbersep=9pt,
+	emph=[1]{for,end,break},emphstyle=[1]\color{red}}
+
+% CONFIGURACIÓN INICIAL DEL DOCUMENTO
+\counterwithin{equation}{section}          % Añade número de sección a las ecuaciones
+\counterwithin{figure}{section}            % Añade número de sección a las figuras
+\counterwithin{table}{section}             % Añade número de sección a las tablas
+\bibliographystyle{\tiporeferencias}       % Estilo APA para las referencias
+\setcaptionmargincm{\defaultcaptionmargin} % Margen por defecto
+\renewcommand{\baselinestretch}{\defaultinterlind} % Ajuste del interlineado
+\ListProperties(                           % Propiedades de las listas
+	Hide=100,
+	Hang=true,
+	Progressive=3ex,
+	Style*=-- ,
+	Style2*=$\bullet$,
+	Style3*=$\circ$,
+	Style4*=\tiny$\blacksquare$)
+\hypersetup{
+	%pdfauthor={Author},
+	pdftitle={\nombredelinforme},
+	pdfsubject={\temaatratar},
+	pdfkeywords={\nombreuniversidad, \nombredelcurso,
+	\codigodelcurso, \localizacionuniversidad},
+	pdfproducer={LaTeX},
+	pdfcreator={pdfLaTeX}}
+\setlength{\headheight}{54pt}
+\makeatletter \renewenvironment{thebibliography}[1] % Bibliografía en 2 columnas
+{\begin{multicols}{2}[\section*{\refname}]
+	\@mkboth{\MakeUppercase\refname}{\MakeUppercase\refname}
+	\list{\@biblabel{\@arabic\c@enumiv}}
+	{\settowidth\labelwidth{\@biblabel{#1}}
+		\leftmargin\labelwidth
+		\advance\leftmargin\labelsep
+		\@openbib@code
+		\usecounter{enumiv}
+		\let\p@enumiv\@empty
+		\renewcommand\theenumiv{\@arabic\c@enumiv}}
+	\sloppy
+	\clubpenalty 4000
+	\@clubpenalty \clubpenalty
+	\widowpenalty 4000
+	\sfcode`\.\@m}
+	{\def\@noitemerr
+		{\@latex@warning{Empty `thebibliography' environment}}
+		\endlist\end{multicols}}
+\makeatother
+
+%END_FOLD
+\begin{document}
+%BEGIN_FOLD
+
+% PORTADA
+\newpage
+\renewcommand{\thepage}{Portada}
+\setpagemargincm{\defaultpagemarginleft}{\defaultfirstpagemargintop}
+{\defaultpagemarginright}{\defaultpagemarginbottom}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nombreuniversidad \\ \nombrefacultad \\ \departamentouniversidad}
+\fancyhead[R]{\includegraphics[scale=\imagendeldepartamentoescl]{\imagendeldepartamento}}
+\vspace*{5cm}
+\begin{center}
+	\Huge {\nombredelinforme} \\
+	\vspace{0.3cm}
+	\large {\temaatratar}
+\end{center}
+\vfill
+\tablaintegrantes
+
+% CONFIGURACIÓN DE PÁGINA Y ENCABEZADOS
+\newpage
+\pagenumbering{Roman} % Estilo de caracteres romanos en minúscula
+\setcounter{page}{1}
+\setpagemargincm{\defaultpagemarginleft}{\defaultpagemargintop}
+{\defaultpagemarginright}{\defaultpagemarginbottom}
+\renewcommand{\sectionmark}[1]{\markright{\thesection.\ #1}}
+\renewcommand{\listfigurename}{\nombltfiguras}       % Nombre del índice de figuras
+\renewcommand{\listtablename}{\nomblttablas}         % Nombre del índice de tablas
+\renewcommand{\contentsname}{\nombltcontend}         % Nombre del índice
+\renewcommand{\tablename}{\nombltwtablas}            % Nombre de la leyenda de las tablas
+\renewcommand{\figurename}{\nombltwfigura}           % Nombre de la leyenda de las figuras
+\pagestyle{fancy} \fancyhf{}                         % Se crean los headers y footers
+\fancyhead[L]{\nouppercase{\rightmark}}              % Header izq, nombre sección
+\fancyhead[R]{\small \rm \thepage}                   % Header der, número página
+\fancyfoot[L]{\small \rm \textit{\nombredelinforme}} % Footer izq, título del informe
+\fancyfoot[R]{\small \rm \textit{\codigodelcurso \ \nombredelcurso}} % Footer der, curso
+\renewcommand{\headrulewidth}{0.5pt}                 % Ancho de la barra del header
+\renewcommand{\footrulewidth}{0.5pt}                 % Ancho de la barra del footer
+
+% ABSTRACT- RESUMEN
+\titleformat*{\section}{\tipofuentetitulo \bfseries}
+\newtitleanum{Resumen}
+
+En el marco de clasificación de materiales con imágenes hiperespectrales, es de alto interés ser capaces de poder clasificar automáticamente, es decir, poder ocupar alguna herramienta de Machine Learning. En vista de que se cuenta con una gran cantidad de datos pero muy pocos etiquetados, resulta útil tener algún mecanismo que aprenda tanto de los no etiquetados como de los que sí se encuentran con su \textit{label}.\\
+Aquí es donde aparecen los \textit{Variational Autoencoders} (VAE) y los \textit{Deep Generative Models.} Gracias a D.P. Kingma, D.J. Rezende, S-Mohamed y M. Welling, quienes desarrollaron estas ideas, es que se puede hacer un entrenamiento "semi supervisado".\\
+La primera etapa consta de una extracción de características con un VAE y la segunda etapa es hacer clasificación con algún clasificador conocido o también con una red neuronal.\\
+A lo largo de este informe desarrollaremos las principales ideas detras de estos modelos, veremos una implementación de ellos, cómo poder ocuparlos para nuestro problema y los resultados obtenidos.
+
+% TABLA DE CONTENIDOS
+\newpage
+\titleformat*{\section}{\tipofuentetituloi \bfseries}       % Tamaño de los títulos
+\titleformat*{\subsection}{\tipofuentesubtituloi \bfseries} % Tamaño de los títulos
+\tableofcontents                                            % Tabla de contenidos
+\listoffigures                                              % Índice de figuras
+\listoftables                                               % Índice de tablas
+
+% CONFIGURACIONES FINALES - INICIO DE LAS SECCIONES
+\newpage
+\titleformat*{\section}{\tipofuentetitulo \bfseries}
+\titleformat*{\subsection}{\tipofuentesubtitulo \bfseries}
+\setcounter{page}{1}
+\renewcommand{\thepage}{\arabic{page}}
+%END_FOLD
+
+% ================================ INICIO DEL DOCUMENTO ================================
+\section{\href{https://arxiv.org/abs/1406.5298}{Deep Generative Models}}
+
+Nos enfrentamos a un problema donde tenemos que los datos están etiquetados. Tenemos un vector de características $x_{i} \in R^{D}$ junto a su etiqueta $y_{i}$. Diremos que las observaciones (los $x_{i}$) tienen variables latentes que notaremos por $z_{i}$.  
+Como nos enfrentamos al problema semi-supervisado quiere decir que no todos nuetros datos están etiquetados. Diremos que sobre los datos vamos a tener una distribución empírica
+$$ p_{l}(x,y) $$
+para los datos etiquetados (l: labeled) y
+$$ p_{u}(x) $$
+para los no etiquetados (u: unlabeled).  
+Ahora veremos modelos para el aprendizaje semi-supervisado que explotan descripciones generativas de los datos para mejorar la clasificación que se será obtenida sólo de los que sí tienen etiquetas.
+
+\subsection{Latent-feature discriminative model (M1)}
+
+	Es típico ocupar un modelo que obtiene una representación característica de los datos. Usando estas características se entrena un clasificador.  
+	Esta extracción de características permite poder hacer un clustering de observaciones relativas en un \textit{latent feature space} que permite clasificación más precisa, incluso con un número pequeño de etiquetas.  
+	En vez de ocupar un auto-encoder prefieren ocupar un modelo generativo profundo que les permite extraer de mejor manera estas \textit{latent features}.
+	
+	El modelo consiste en
+	$$ p(z) = N(z|0,I) $$
+	$$ p_{\theta}(x|z) = f(x;z,\theta) $$
+	
+	donde $f$ es en realidad cualquier \textit{likelihood} que queramos ocupar. Sus probabilidades se forman por una transformación no-lineal, con parámetros $\theta$, de un conjunto de variables latentes $z$.  
+	Esta tranformación no-lineal es la que permite obtener \textit{higher moments} de los datos (me imagino que mayores niveles de abstracción de las características) y escogieron que estas transformaciones no lineales sean con \textit{deep neural networks}.  
+	
+	Ahora los samples aproximados del \textit{posterior} $p(z|x)$ se usan como características para entrenar un clasificador para predecir la clase $y$. Haciendo esto entonces pueden hacer la clasificación en un espacio con menos dimensiones, porque se espera ocupar menos variables latentes que número de características tiene la obvservación.
+	Como estamos en un espacio con dimensiones menores y más encima nuestro \textit{posterior} son gaussianas independientes cuyos parámetros se forman por las transformaciones no-lineales se obtiene que los ejemplos son más fáciles de separar. Este sencillo paso resulta en mejoras en la clasificación de las SVMs.
+	
+\subsection{Generative semi-supervised model (M2)}
+
+	Se propone un modelo probabilístico que describe los datos como generados por una clase latente $y$ en adición a una variable latente $z$. Los datos son explicados por el modelo generativo
+	
+	$$ p(y) = Cat(y|\pi) $$
+	$$ p(z) = N(z|0,I) $$
+	$$ p_{\theta}(x|y,z) = f(x;y,z,\theta) $$
+	
+	donde $Cat(y|\pi)$ es la distribución \href{https://en.wikipedia.org/wiki/Categorical_distribution}{\textit{categorical}}. La variable de las clases $y$ se trata como latente si no está disponible y $z$ son variables latentes adicionales. Estas variables latentes son marginalmente independientes, entonces permiten separar, en casos de lectura de dígitos por ejemplo, el dígito que se está leyendo (la clase $y$) del estilo de escritura (variable $z$).   
+	Como en el caso anterior el likelihood es seteado por una transformación no-lineal de las variables latentes. La transformación no lineal la hacen con deep neural netowrks.  
+	La clasificación entonces en este modelo se hace a través de inferencia. Para saber los labels que faltan se calculan los posterior $p_{\theta}(y|x)$.
+	
+\subsection{Stacked generative semi-supervised model (M1+M2)}
+
+	Combinación de ambos modelos. Primero se obtienen variables latentes $z_{1}$ con M1 y entrenar el modelo M2 con esos \textit{features} en vez de los datos brutos. El resultado es un modelo generativo con dos capas de variables estocásticas:
+	$$ p_{\theta}(x,y,z1,z2) = p(y)p(z_{2})p_{\theta}(z_{1}|y,z_{2})p_{\theta}(x|z_{1}) $$
+	donde los \textit{priors} $p(y)$ y $p(z_{2})$ son igual que en el modelo anterior, las otras dos son parametrizadas con \textit{deep neural networks}.
+	
+\section{Scalable variational inference}
+
+\subsection{Lower bound objective}
+
+	En todos estos modelos la computación exacta de la distribución a posterior es intratable debido a la no-linealidad y las dependencias entre las variables aleatorias.  
+	Para los modelos descritos introduciremos una distribución $q_{\phi}(z|x)$ con parámetros $\phi$ que aproximan la distribución a posterior $p(z|x)$. Luego, siguiendo el \href{https://en.wikipedia.org/wiki/Variational_principle}{principio variacional} obtendremos una cota inferior del \textit{marginal likelihood}, lo que asegurará que la aproximación se parezca a la distribución real.  
+	
+	Se construye la distribución a posterior aproximada $q_{\phi}(\cdot)$ un \textit{inference or recognition model} que se ha transformado en un método popular para inferencia variacional eficiente.  
+	Usando una \textit{inference network} nos saltamos la necesidad de calcular para cada punto los parámetros variacionales pero podemos obtener de igual forma los parámetros $\phi$ que son globales. Esto nos permite disminuir los costos de la inferencia generalizando la distribución a posterior estimada para todas las variables latentes a través de los parámetros de la red, lo que permite inferencia rápida tanto en entrenamiento como en testing.  
+	
+	Una \textit{inference netowrk} es introducida para todas las variables latentes y son parametrizadas con \textit{deep neural networks} cuyos outputs forman los parámetros de la distribución $q_{\phi}(\cdot)$.
+	
+	Para el \textit{latent-feature discriminative model} (M1) se usa una \textit{Gaussian inference network} $q_{\phi}(z|x)$ para las variables latentes $z$.
+	
+	Para el \textit{generative semi-supervised model} (M2) se introduce un \textit{inference model} para cada una de las variables latentes, $z$ e $y$, que se asumen tienen una forma factorizable $q_{\phi}(z,y|x) = q_{\phi}(z|x)q_{\phi}(y|x)$, que son distribuciones gaussianas y categorical  respectivamente.
+	
+	M1:
+	
+	$$ q_{\phi}(z|x) = \mathcal{N}(z | \mu_{\phi}(x), diag(\sigma^{2}_{\phi}(x))) $$
+	
+	M2:
+	
+	$$ q_{\phi}(z|y,x) = \mathcal{N}(z| \mu_{\phi}(y,x), diag(\sigma^{2}_{\phi}(x))) $$
+	
+	$$ q_{\phi}(y|x) = \mathrm{Cat}(y|\pi_{\phi}(x)) $$
+	
+	donde $\sigma_{\phi}(x)$ es un vector de desviaciones estándar, $\pi_{\phi}(x)$ es un vector de probabilidades, y las funciones $\mu_{\phi}(x)$, $\sigma_{\phi}(x)$ y $\pi_{\phi}(x)$ son representadas como \href{https://en.wikipedia.org/wiki/Multilayer_perceptro}{MLP}.
+	
+\subsection{Latent feature discriminative model objective}
+
+	El \textit{variational bound} $\mathcal{J}(x)$ sobre el marginal likelihood para un solo punto es
+	
+	$$ \log p_{\theta}(x) \geq \mathbb{E}_{q_{\phi}(z|x)}[\log p_{\theta}(x|z)] - \mathrm{KL}[q_{\phi}(z|x)||p_{\theta}(z)] = - \mathcal{J}(x) $$
+	
+	La \textit{inference network} $q_{\phi}(z|x)$ es usada durante el entrenamiento del modelo usando tanto los ejemplos etiquetados como los no etiquetados. Esta distribución a posterior aproximada es usada entonces como extractor de características de los ejemplos etiquetados y esas características entonces son usadas para entrenar un clasificador.
+	
+\subsection{Generative semi-supervised model objective}
+
+	Para este modelo tenemos que considerar dos casos. El primer caso, el label correspondiente del dato se conoce y el \textit{variational bound} es una simple extensión del bound puesto más arriba (el del modelo anterior):
+	
+	$$\log p_{\theta}(x,y) \geq
+	\mathbb{E}_{q_{\phi}(z|x,y)}[\log p_{\theta}(x|y,z) + \log p_{\theta}(y) + \log p(z) - \log q_{\phi}(z|x,y)] = -\mathcal{L}(x,y) $$
+	
+	Para el caso en que la etiqueta no la conozcamos, la clase es tratada como una variable latente donde se hace inferencia a posterior y la cota entonces es:
+	
+	$$ \log p_{\theta}(x) \geq
+	\mathbb{E}_{q_{\phi}(y,z|x)}[\log p_{\theta}(x|y,z) + \log p_{\theta}(y) + \log p(z) -\log q_{\phi}(y,z|x)] $$
+	
+	$$ = \sum_{y} q_{\phi}(y|x) (-\mathcal{L}(x,y)) + \mathcal{H}(q_{\phi}(y|x)) = -\mathcal{U}(x) $$
+
+	Atención acá, que la esperanza si sabemos la etiqueta se calcula sobre $q_{\phi}(z|x,y)$ y si no sabemos la etiqueta se calcula sobre $q_{\phi}(y,z|x)$, pero habíamos dicho que
+	
+	$$  q_{\phi}(z,y|x) = q_{\phi}(z|x)q_{\phi}(y|x)  $$
+	
+	Entonces si notamos bien la esperanza se puede interpretar como que es el término $-\mathcal{L}(x,y)$ pero falta multiplicarlo por $q_{\phi}(y|x)$ y marginalizar sobre todas las clases. Además sobra un término: $-\log q_{\phi}(y|x)$ (al factorizar el $-\log q_{\phi}(y,z|x) = -\log q_{\phi}(y|x) - \log q_{\phi}(z|x)$) que al ser multiplicado por el $q_{\phi}(y|x)$ resulta la \href{https://en.wikipedia.org/wiki/Maximum_entropy_probability_distribution}{entropía}, entonces esta es sumada para mantener la igualdad. Es por esto que la esperanza que se muestra es igual a lo que se pone justo abajo.
+	
+	Por lo tanto la cota para el marginal likelihood para todo el data set será
+	
+	$$ \mathcal{J} = \sum_{(x,y)-p_{l}} \mathcal{L}(x,y) + \sum_{x - p_{u}} \mathcal{U}(x) $$
+	
+	La distribución $q_{\phi}(y|x)$ para los ejemplos que no tienen etiqueta es tratada como un \textit{discriminative classifier} y podemos usar este conocimiento para construir el mejor clasificador posible como nuestro \textit{inference model}. Esta distribución es la que se ocupa en los test para predicciones en los datos que no se han visto.
+	
+	En la función objetivo $\mathcal{J}$ la distribución predictiva de las etiquetas $q_{\phi}(y|x)$ contribuye sólo al segundo término, al de los que no tienen etiquetas, lo que es una propiedad no deseable si queremos usar esta distribución como nuestro clasificador. Idealmente, todo los parámetros (tanto del modelo como variacionales) deberían ser aprendidos en todos los casos. Para arreglar esto se agrega una \textit{classification loss} cuya distribución $q_{\phi}(y|x)$ también aprende de los ejemplos etiquetados.
+	
+	La función objetivo final resulta ser:
+	
+	$$ \mathcal{J}^{\alpha} = \mathcal{J} + \alpha \cdot \mathbb{E}_{p_{l}(x,y)}[- \log q_{\phi}(y|x)] $$
+	
+	Notemos que la esperanza se calcula sobre la distribución de los ejemplos etiquetados.
+	
+	Acá el hiper-parámetro $\alpha$ controla el peso relativo entre \textit{generative or purely discriminative learning}. En los experimentos usan un $\alpha = 0.1 \cdot N$. 
+	
+\section{Optimization}
+
+	Los bounds encontrados para nuestros modelos proveen una función objetivo unificada para la optimización de ambos parámetros, $\theta$ y $\phi$, del \textit{generative} y del \textit{inference model} respectivamente. Esta optimización se puede hacer en conjunto, sin tener que recurrir al algoritmo EM (expected maximization), una reparametrización determinística de las esperanzas en la función objetivo en conjunto con \href{https://en.wikipedia.org/wiki/Monte_Carlo_method}{Monte carlo approximation}.  
+	
+	A continuación se describe las estrategias principales para el M1, pues las mismas se ocupan para el M2.
+	
+	Cuando el prior $p(z)$ es una gaussiana esférica $p(z) = \mathcal{N}(z|0,I)$, y la distribución variacional $q_{\phi}(z|x)$ es una gaussiana (como la que habíamos mencionado más arriba) el término de la divergencia KL puede ser computado analíticamente.
+	
+	Ahora, el otro término, el del log-likelihood se puede reescribir como
+	
+	$$ \mathbb{E}_{q_{\phi}(z|x)}[\log p_{\theta}(x|z)] =
+	\mathbb{E}_{\mathcal{N}(\epsilon|0,I)}[\log p_{\theta}(x| \mu_{\phi}(x) + \sigma_{\phi}(x) \cdot \epsilon)] $$
+	
+	Donde el término $\cdot$ indica la multiplicación término a término. Esa transformación es la que mencionan en el paper de los DLGMs que dicen que cualquier gaussiana puede ser obtenida desde una esférica con esa transformación.
+	
+	Esta esperanza aún no se puede resolver analíticamente (no lo vamos a hacer) pero sus gradientes respecto a los parámetros $\phi$ y $\theta$ pueden ser computados eficientemente como esperanzas de unos gradientes:
+	
+	$$ \nabla_{\{\phi, \theta\}} \mathbb{E}_{q_{\phi}(z|x)}[\log p_{\theta}(x|z)] =
+	\mathbb{E}_{\mathcal{N}(\epsilon|0,I)}[\nabla_{\{\phi,\theta\}} \log p_{\theta}(x| \mu_{\phi}(x) + \sigma_{\phi}(x)\cdot \epsilon)] $$
+	
+	Los gradientes de la función de costo para el M2 pueden ser calculados por aplicación directa de la regla de la cadena y notando que el límite condicional $\mathcal{L}(x_{n},y)$ contiene los mismos términos.
+	
+	Durante la optimización se usan estos gradientes estimados en conjunto con métodos de descenso del gradiente estocástico, como SGD, RMSprop, o ADAGrad. Esto resulta en actualización de parámetros del estilo $(\theta^{t+1}, \phi^{t+1}) \leftarrow (\theta^{t}, \phi^{t}) + \Gamma^{t}(g^{t}_{\theta}, g^{t}_{\phi})$ donde $\Gamma$ es una \textit{diagonal preconditioning matrix} que va adaptando el gradiente para minimización más rápida.
+	
+\newpage
+
+\section{Código}
+
+\subsection{Repositorios}
+
+	Los autores del paper hicieron público su código y fue en este en el cual me basé para poder hacer una adaptación a los datos con los que contamos nosotros. El fork correspondiente, el cual modifqué es \url{https://github.com/SetaSouto/nips14-ssl}.\\
+	Además cuento con un repositorio en donde se encuentra alojado este informe y otros apuntes en formato Markdown (más informales) que contienen ideas mías y anotaciones respecto a cómo ocupar el código. El repo de los apuntes es \url{https://github.com/SetaSouto/TrabajoDirigido}.
+	
+\subsection{HyperspectralData class}
+
+	Para el manejo y transformaciones de los datos se creó la el archivo \textit{hyperspectralData.py} que contiene la clase \textit{HyperspectralData} la cual se debe inicializar con el path correspondiente a donde se encuentran los datos etiquetados, es decir la carpeta \textit{Labeled HSI}. Por defecto tiene la ruta de mi computador.\\
+	Los métodos de la clase se explican por sí solos, están todos documentos y comentados.\\
+	La idea que tiene que quedar en mente si es que los modelos reciben como entrada matrices con todos los datos pero separados en dos: Datos y Etiquetas. Las etiquetas deben estar en formato \textit{one hot encoding} y cada etiqueta en una columna, es decir la matriz es de la forma $number\ of\ classes\ \times\ number\ of\ samples$. Lo mismo sucede con los datos, que son vectores con 268 datos, por lo tanto se debe entregar una matriz de $268 \times\ number\ of\ samples$. Los datos deben estar \textbf{normalizados}, es decir ninguno puede ser mayor que $1.0$.\\
+	También a considerar, si se acude a las líneas 43 a 49 del archivo \textit{gpulearn$\_$z$\_$x$\_$hyp.py} (que es quien hace el entrenamiento del M1, lo veremos más adelante), se nota que se le dice al modelo que los datos tienen la forma $(67,4)$ lo que sirve solo para poder "dibujar" lo que el VAE está produciendo.\\ 
+	Solamente queda decir que los modelos reciben los datos así como se indicó pero se les alimenta con un par de matrices para entrenamiento, otro para testing y otro para validación; por lo tanto, reciben 6 matrices de input los modelos.
+
+\subsection{Entrenamiento M1}
+
+	Para ejecutar el script de entrenamiento se debe llamar de la siguiente forma:
+	\begin{lstlisting}
+		THEANO_FLAGS=floatX=float32 python run_VAE_hyp.pyL
+	\end{lstlisting}
+	Que ejecuta el archivo indicado pero que en realidad llama al main del archivo \textit{gpulearn$\_$z$\_$x$\_$hyp.py} donde se encuentra todo el código, es ahí donde se pueden alterar los \textbf{hiperparámetros}, cambiar \textbf{los datos de entrenamiento} u otra modificación.
+	Muestra en pantalla cada diez pasos algunas estadísticas como:
+	\begin{itemize}
+		\item El paso en el que va.
+		\item El tiempo que ha pasado.
+		\item El loglikelihood del batch de entrenamiento.
+		\item El logliklihood del valid set.
+		\item Cuantos pasos lleva sin mejorar.
+	\end{itemize}
+
+	Respecto a lo último el script se detiene cuando hace 100 pasos sin mejoras. Por experiencia propia hay veces que llega como hatsa 70 pasos sin mejorar y mejora sopresivamente.
+	
+	Finalmente los resultados se van "mostrando" en la carpeta que se indica al comienzo con "logdir". Básicamente es como qué archivo se está ejecutando, con cuantos nodos ocultos y el tiempo actual. En esa carpeta se generan imágenes que son los samples de la red, a medida que aprende es capaz de generar mejore samples, o sea samples más parecidos con los que entrena.
+	
+	El código del script está basado en el \textit{ru$\_$gpulearn$\_$z$\_$x} del repositorio original.\\
+	
+	Solamente cabe mencionar que que este entrenamiento no necesita las etiquetas pero igual son provistas.
+	
+\subsection{Entrenamiento M2}
+
+	El entrenamiento del M2 es similar al del M1, solo que en este caso se debe llamar al archivo $run\_M2\_hyp.py$ que ejecuta el main de $learn\_yz\_x\_hyp.py$, es ahí donde se deben hacer las modificaciones como lo indicado en la sección anterior.\\
+	
+	\textbf{Importante:} Para entrenar este modelo ya debe haber entrenado el M1 y los diccionarios con las variables de las redes (que en el código son las $v$ y las $w$) deben estar en el directorio \textit{results/hyper$\_$50-(500, 500)$\_$longrun/}. Esto es porque en el entrenamiento del M2 e ocupa la extracción de características que se puede hacer con M1.
+	
+\subsection{Extracción de características}
+
+	Para entender como se hace la extracción de características hice un script llamado\\ $extract\_features\_hyp.py$. Lo iré explicando:
+	\begin{itemize}
+		
+	
+	\item  Primero tenemos que setear el path donde se encuentran los resultados del entrenamiento. En esa carpeta aparte de los samples generados por la red se encuentran los parámetros de la red. Las variables $v$ son para la generación de las características (inference), mientras que los parámetros $w$ (generative) son para generar samples a partir de las variables latentes (características). Hay que tener claro algo aquí:
+	\item Las características no son algo así concreto o determinista, más bien, siendo rigurosos, son las variables latentes que el modelo aprende, que supuestamente generan los ejemplos reales. La idea es "descubrir"  los valores de las variables latentes (que en este caso son distribuciones normales, entonces aprendemos sus parámetros, la media y la varianza) para tener una representación más general de los datos. Es decir, aprendemos como distribuyen estas características más generales, y así, sampleando de estas distribuciones, es capaz de generar nuevos datos, he ahí la razón de generar samples al entrenar el M1.
+	\item Con el path, cargamos las variables del modelo que entrenamos.
+	\item Importamos y cargamos el modelo. Ojo aquí: Hay que setearlos con los mismos hyperparámetros que se ocuparon para entrenar. Los que dejé yo son los que me dieron mejores resultados, pero al ojo, viendo los samples que me generaban, con otros hyperparámetros se generaban imágenes más ruidosas.
+	\item Luego importamos los datos a los cuales les queremos sacar características.
+	\item Después, "transformamos los datos", ocupando la función $dist\_qz$ que nos entrega la media y la varianza para cada uno de los datos pasados. La función la verdad aún no tengo claro porqué se llama con esos argumentos, pero así la ocupan en el paper y su implementación.
+	\item Finalmente, para extraer las características simplemente sampleamos de las distribuciones, o sea generamos la distribución normal con los parámetros que nos entrega el modelo y sampleamos.
+	
+	\end{itemize}
+	
+\section{Resultados}
+
+	Los entrenamiento son muy lentos, es por que esto que los resultados no son demasiados, pues para obtener conclusiones de un primer entrenamiento se debe dejar el computador iterando más de 15 horas al menos.
+
+	\subsection{Primer long run M2}
+	
+	La primera vez que se corrió el M2 después de entrenar el M1 fue muy esperanzador. Los resultados indicaban una precisión de más del 90\%. Hasta que generé en extracto de código que me mostraba qué estaba prediciendo y para mi sorpresa, sólo predecía la etiqueta $39$.\\
+	¿Qué pasó? No había analizado cómo se distribuían las etiquetas en el archivo que estaba ocupando, claro cerca del 90\% eran la etiqueta $39$, respuesta fácil: Todos son $39$.
+	
+	\subsection{Segundo long run M2}
+	
+	Producto de esta confusión y de lo ingenuo que fui al no revisar cómo se ditribuían las etiquetas cree una nueva forma para alimentar el M2 que lee de varios archivos datos pero si en algún momento tiene más de $5000$ datos de una etiqueta entonces descarta ejemplos al azar y se queda con un máximo de 5000. Así no tenemos problemas de que la mayoría de los datos sean de una sola etiqueta.\\
+	
+	Esto llevó a tener mejor precisión, pero aún así no se logró superar el 40$\%$ de efectividad.
+	
+\section{Errores y trabajo a seguir}
+
+El modelo se puede ocupar, se entrena y aprende, pero ¿Por qué no funcionó como se esperaba? Tengo un par de hipótesis -que por el tiempo que toma entrenar estos modelos se deja como trabajo a seguir-.
+
+\begin{itemize}
+	\item Pocas horas de entrenamiento. En el segundo long run del M2 se dejó 16 horas, alcanzó a hacer 46 pasos y lo mejor que obtuvo fue en el paso 34 un 60\% de error en el test set y en el valid set.
+	\item Pero la hipótesis más importante es que solo cambié los datos con que se entrenaba el M2, el extractor de características seguía siendo el que se había entrenado sólo sobre la etiqueta 39.
+\end{itemize}
+
+Es por esto que mi recomendación sería alimentar el M1 de la nueva forma, como se alimentó el M2 (es el método $load\_dataset\_m2$ de $HyperspectralData$), dejarlo correr durante al menos 3 días y lo mismo con el M2.
+
+
+% FIN DEL DOCUMENTO
+\end{document}
